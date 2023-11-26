@@ -1,0 +1,28 @@
+<?php
+/**
+ * Elementor dynamic tags.
+ */
+
+function ml_register_new_dynamic_tags( $dynamic_tags_manager ) {
+	require_once __DIR__ . '/dynamic_tags/class-elementor-dynamic-tag-ml-tag.php';
+	$dynamic_tags_manager->register( new \Elementor_Dynamic_Tag_Ml_Tag() );
+}
+add_action( 'elementor/dynamic_tags/register', 'ml_register_new_dynamic_tags' );
+
+/**
+ * Register new dynamic tag group
+ *
+ * @since 1.0.0
+ * @param \Elementor\Core\DynamicTags\Manager $dynamic_tags_manager Elementor dynamic tags manager.
+ * @return void
+ */
+function ml_register_new_dynamic_tag_group( $dynamic_tags_manager ) {
+
+	$dynamic_tags_manager->register_group(
+		'custom_tag_group',
+		array(
+			'title' => esc_html__( 'Tag Group', 'thiswillbeu' ),
+		)
+	);
+}
+add_action( 'elementor/dynamic_tags/register', 'ml_register_new_dynamic_tag_group' );
